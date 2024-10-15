@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%) ;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #495057;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f8f9fa;
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        li span {
+            font-size: 16px;
+            color: #495057;
+        }
+        li div {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-small {
+            background-color: #28a745;
+            padding: 8px 12px;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-small:hover {
+            background-color: #218838;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Records</h2>
+        <form action="/add" method="post">
+            <input type="text" name="record" placeholder="Enter the record" required>
+            <button type="submit">Add Record</button>
+        </form>
+
+        <ul>
+            <% records.forEach((record, index) => { %>
+                <li>
+                    <span><%= record %></span>
+                    <div>
+                        <form action="/edit/<%= index %>" method="post">
+                            <button class="btn-small" type="submit">Edit</button>
+                        </form>
+                        <form action="/delet/<%= index %>" method="get">
+                            <button class="btn-danger" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>
